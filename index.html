@@ -3,259 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Purva | Portfolio</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f172a;
-  color: #e5e7eb;
-}
+<title>Purva Ghadge | Portfolio</title>
 
-/* NAV */
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 30px;
-  background: #111c33;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-nav a {
-  color: #93c5fd;
-  margin-left: 14px;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a:hover {
-  color: #60a5fa;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px 20px 40px;
-}
-
-.hero h1 {
-  font-size: 38px;
-  margin-bottom: 6px;
-}
-
-.hero p {
-  color: #cbd5e1;
-  font-size: 16px;
-}
-
-/* SECTION */
-section {
-  padding: 30px 14%;
-}
-
-h2 {
-  color: #60a5fa;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-
-/* CARD */
-.card {
-  background: #111c33;
-  padding: 14px 16px;
-  margin: 10px 0;
-  border-radius: 10px;
-  line-height: 1.5;
-}
-
-/* SKILLS */
-.skills span {
-  display: inline-block;
-  background: #1e293b;
-  padding: 6px 10px;
-  margin: 4px;
-  border-radius: 6px;
-  font-size: 13px;
-}
-
-/* PROJECT TITLE */
-.project-title {
-  cursor: pointer;
-  color: #93c5fd;
-  font-weight: 600;
-  display: inline-block;
-  margin-bottom: 4px;
-}
-
-.project-title:hover {
-  color: #60a5fa;
-}
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-}
-
-.modal-content {
-  background: #111c33;
-  padding: 18px;
-  width: 45%;
-  margin: 8% auto;
-  border-radius: 10px;
-}
-
-.close {
-  float: right;
-  cursor: pointer;
-  color: #ff6b6b;
-  font-size: 18px;
-}
-</style>
+<link rel="stylesheet" href="./assets/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<nav>
-  <div><b>👩‍💻 Purva Ghadge</b></div>
-  <div>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+<main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" data-sidebar>
+
+  <div class="sidebar-info">
+    <figure class="avatar-box">
+      <img src="./assets/images/my-avatar.png" width="80">
+    </figure>
+
+    <div class="info-content">
+      <h1 class="name">Purva Ghadge</h1>
+      <p class="title">CS Graduate | AI & Data Enthusiast 🚀</p>
+    </div>
+
+    <button class="info_more-btn" data-sidebar-btn>
+      <span>Contacts</span>
+    </button>
   </div>
+
+  <div class="sidebar-info_more">
+    <div class="separator"></div>
+
+    <ul class="contacts-list">
+      <li class="contact-item">
+        <p>Email: purvaghadgesns@gmail.com</p>
+      </li>
+
+      <li class="contact-item">
+        <p>Phone: +91 9702313681</p>
+      </li>
+
+      <li class="contact-item">
+        <p>Location: Mumbai, India 🇮🇳</p>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+<!-- CONTENT -->
+<div class="main-content">
+
+<!-- NAV -->
+<nav class="navbar">
+  <ul class="navbar-list">
+    <li><button class="navbar-link active" data-nav-link>About</button></li>
+    <li><button class="navbar-link" data-nav-link>Resume</button></li>
+    <li><button class="navbar-link" data-nav-link>Portfolio</button></li>
+    <li><button class="navbar-link" data-nav-link>Contact</button></li>
+  </ul>
 </nav>
 
-<div class="hero">
-  <h1>🚀 Computer Science Graduate</h1>
-  <p>AI • Data • Full Stack • Real-world problem solving</p>
-</div>
-
 <!-- ABOUT -->
-<section id="about">
-  <h2>🧠 About Me</h2>
-  <div class="card">
-    I am a Computer Science graduate passionate about building scalable software solutions using AI, data analytics, and full-stack development.  
-    I enjoy turning real-world problems into practical tech solutions and continuously improving through hands-on projects.
-  </div>
-</section>
+<article class="about active" data-page="about">
+  <h2 class="h2">About Me 👩‍💻</h2>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <h2>💼 Experience</h2>
+  <p>
+    I’m a Computer Science graduate passionate about AI, Data Analytics, and Full Stack Development.
+    I love building real-world projects that solve practical problems and improve everyday life.
+  </p>
 
-  <div class="card">
-    <b>Bhanzu (Remote) 👨‍🏫</b><br>
-    Math Trainer<br>
-    • Conducted live classes for students (10–16 yrs)<br>
-    • Created interactive learning sessions 📚<br>
-    • Improved student engagement & feedback
-  </div>
+  <p>
+    Currently exploring cloud systems, AI applications, and scalable web development.
+  </p>
+</article>
 
-  <div class="card">
-    <b>Amazeheads LLP 🤖</b><br>
-    Robotics Trainer<br>
-    • Trained teachers in robotics & MIT App Inventor<br>
-    • Conducted school workshops 🏫<br>
-    • Organized robotics exhibitions
-  </div>
-</section>
+<!-- RESUME -->
+<article class="resume" data-page="resume">
+  <h2 class="h2">Resume 📄</h2>
 
-<!-- EDUCATION -->
-<section id="education">
-  <h2>🎓 Education</h2>
+  <h3>Experience 💼</h3>
 
-  <div class="card">
-    <b>MSc Computer Science</b> (2024–2026)<br>
-    D.G. Ruparel College, Mumbai University
-  </div>
+  <p>
+    <b>Bhanzu</b> – Math Trainer (Online)<br>
+    Conducted interactive math sessions for students and improved problem-solving skills.
+  </p>
 
-  <div class="card">
-    <b>BSc Computer Science</b> (2021–2024)<br>
-    9.06 CGPA
-  </div>
+  <p>
+    <b>Amazeheads LLP</b> – Robotics Trainer<br>
+    Taught robotics, sensors, and MIT App Inventor in schools across Mumbai.
+  </p>
 
-  <div class="card">
-    <b>HSC</b> (90.33%) 🎯
+  <h3>Education 🎓</h3>
+
+  <p><b>MSc CS</b> – D.G. Ruparel College (2024–2026)</p>
+  <p><b>BSc CS</b> – SIES College (9.06 CGPA)</p>
+</article>
+
+<!-- PORTFOLIO -->
+<article class="portfolio" data-page="portfolio">
+  <h2 class="h2">Projects 🚀</h2>
+
+  <div class="card" onclick="openModal('p1')">
+    Crime Analysis System
   </div>
 
-  <div class="card">
-    <b>SSC</b> (85.60%) 📘
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <h2>⚡ Skills</h2>
-  <div class="card skills">
-    <span>Python</span>
-    <span>Flask</span>
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>SQL</span>
-    <span>Cloud ☁️</span>
-    <span>AI 🤖</span>
-    <span>Networking</span>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <h2>📁 Projects</h2>
-
-  <div class="card">
-    <div class="project-title" onclick="openModal('p1')">
-      📍 Spatio Temporal Crime Analysis
-    </div>
-    <br>
-    Crime pattern detection using spatial + time-based analysis.
+  <div class="card" onclick="openModal('p2')">
+    Cloud Expense Tracker
   </div>
 
-  <div class="card">
-    <div class="project-title" onclick="openModal('p2')">
-      💰 Cloud Expense Tracker
-    </div>
-    <br>
-    SaaS expense tracking system with dashboards & authentication.
+  <div class="card" onclick="openModal('p3')">
+    Air Quality Monitoring IoT
   </div>
 
-  <div class="card">
-    <div class="project-title" onclick="openModal('p3')">
-      🌫️ Air Quality Monitoring System
-    </div>
-    <br>
-    IoT-based real-time air pollution monitoring system.
+  <div class="card" onclick="openModal('p4')">
+    AI Image Generator
   </div>
-
-  <div class="card">
-    <div class="project-title" onclick="openModal('p4')">
-      🎨 AI Image Generator
-    </div>
-    <br>
-    AI-powered image generation using prompts.
-  </div>
-</section>
+</article>
 
 <!-- CONTACT -->
-<section id="contact">
-  <h2>📬 Contact</h2>
-  <div class="card">
-    🔗 LinkedIn: <a href="https://linkedin.com" target="_blank">Profile</a><br><br>
-    💻 GitHub: <a href="https://github.com" target="_blank">Projects</a><br><br>
-    📧 Email: purvaghadgesns@gmail.com<br>
-    📱 Phone: +91 XXXXX XXXXX
-  </div>
-</section>
+<article class="contact" data-page="contact">
+  <h2 class="h2">Contact 📬</h2>
+
+  <p>Email: purvaghadgesns@gmail.com</p>
+  <p>GitHub: github.com/purvaghadge</p>
+  <p>LinkedIn: linkedin.com/in/purvaghadge</p>
+</article>
+
+</div>
+</main>
 
 <!-- MODAL -->
 <div id="modal" class="modal">
@@ -265,34 +141,8 @@ h2 {
   </div>
 </div>
 
-<script>
-function openModal(project) {
-  let text = "";
-
-  if(project === "p1") {
-    text = "<h3>📍 Spatio Temporal Crime Analysis</h3><p>Detects crime patterns using location + time data to identify hotspots and trends.</p>";
-  }
-
-  if(project === "p2") {
-    text = "<h3>💰 Cloud Expense Tracker</h3><p>SaaS-based expense tracking system with authentication and analytics dashboard.</p>";
-  }
-
-  if(project === "p3") {
-    text = "<h3>🌫️ Air Quality System</h3><p>IoT-based system for real-time air quality monitoring using sensors.</p>";
-  }
-
-  if(project === "p4") {
-    text = "<h3>🎨 AI Image Generator</h3><p>Generates images using AI prompt-based API system.</p>";
-  }
-
-  document.getElementById("modal-text").innerHTML = text;
-  document.getElementById("modal").style.display = "block";
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
-</script>
+<script src="./assets/js/script.js"></script>
 
 </body>
 </html>
+
