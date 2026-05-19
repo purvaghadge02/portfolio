@@ -21,6 +21,7 @@ nav {
   background: #0f172a;
   position: sticky;
   top: 0;
+  z-index: 100;
 }
 
 nav a {
@@ -32,15 +33,17 @@ nav a {
 /* HERO */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 90px 20px;
 }
 
 .hero h1 {
-  font-size: 40px;
+  font-size: 42px;
+  margin-bottom: 10px;
 }
 
 .hero p {
   color: #9ca3af;
+  font-size: 18px;
 }
 
 /* SECTION */
@@ -50,6 +53,7 @@ section {
 
 h2 {
   color: #60a5fa;
+  margin-bottom: 15px;
 }
 
 /* CARD */
@@ -58,6 +62,7 @@ h2 {
   padding: 20px;
   margin: 15px 0;
   border-radius: 12px;
+  line-height: 1.6;
 }
 
 /* SKILLS */
@@ -69,7 +74,7 @@ h2 {
   border-radius: 8px;
 }
 
-/* PROJECT */
+/* PROJECT TITLE */
 .project-title {
   cursor: pointer;
   color: #93c5fd;
@@ -104,6 +109,15 @@ h2 {
   float: right;
   cursor: pointer;
   color: red;
+  font-size: 18px;
+}
+
+/* CONTACT LINKS */
+a {
+  color: #93c5fd;
+}
+a:hover {
+  color: #60a5fa;
 }
 </style>
 </head>
@@ -115,81 +129,74 @@ h2 {
   <div>
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<div class="hero" style="color:#20b2aa;">
+<div class="hero">
   <h1>Computer Science Graduate</h1>
   <p>Building AI, Data & Real-World Impact Systems</p>
 </div>
 
+<!-- ABOUT -->
 <section id="about">
   <h2>About Me</h2>
   <div class="card">
-    I am a Computer Science graduate focused on building scalable and practical software solutions using AI, data analytics, and full-stack development.  
-    I enjoy designing systems that solve real-world problems, improve efficiency, and create meaningful user experiences.  
-    I am continuously learning modern technologies and applying them through hands-on projects in web development and data-driven applications.
+    Computer Science graduate focused on building scalable software solutions using AI, data analytics, and full-stack development.  
+    I enjoy solving real-world problems through technology and continuously improving my skills through hands-on projects.
   </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience">
-  <h2>Work Experience</h2>
+  <h2>Experience</h2>
 
   <div class="card">
-   <b>Bhanzu (12/2025- Present | Remote) </b>
-   Math Trainer 
-   Part time online math trainer. 
-    Conducted live online sessions for students in the age group of 10-16 years, covering topics such as basic arithmetic, geometry, and problem-solving techniques. 
-    Developed engaging lesson plans and interactive activities to enhance students' understanding and interest in mathematics. 
-    Received positive feedback from students and parents for creating a supportive and effective learning environment. 
-   <br>
-   <b>Amazeheads LLP (06/2024- 11/2024| Mumbai)</b>
-   Robotics Trainer 
-    Trained teachers in robotics on sensor integration,motherboard usage, enabling them to create projects with MIT App Inventor 
-    Taught at Sophia School and Queen Mary School in Mumbai through Amazeheads LLP  
-    Conducted Robotics Exhibitions. 
+    <b>Bhanzu (12/2025 - Present | Remote)</b><br>
+    Math Trainer<br>
+    • Conducted live sessions for students (10–16 years)<br>
+    • Designed interactive learning activities<br>
+    • Improved student engagement in mathematics
+  </div>
+
+  <div class="card">
+    <b>Amazeheads LLP (06/2024 - 11/2024 | Mumbai)</b><br>
+    Robotics Trainer<br>
+    • Trained teachers in robotics & MIT App Inventor<br>
+    • Conducted sessions in schools<br>
+    • Organized robotics exhibitions
   </div>
 </section>
 
+<!-- EDUCATION -->
 <section id="education">
   <h2>Education</h2>
 
   <div class="card">
-    <b>MSc Computer Science</b>
-    2024-2026 
-    D.G Ruparel College of Arts,Science and Commerce
-    University of Mumbai
-    <br>
+    <b>MSc Computer Science (2024–2026)</b><br>
+    D.G. Ruparel College, University of Mumbai
   </div>
 
   <div class="card">
-    <b>BSc Computer Science</b>
-    2021-2024 
-    SIES College of Arts,Science and Commerce
-    Mumbai University 
-    9.06 CGPA
-    <br>
+    <b>BSc Computer Science (2021–2024)</b><br>
+    SIES College, 9.06 CGPA
   </div>
 
   <div class="card">
-    <b>HSC</b>
-    2021
-    SIES College of Arts,Science and Commerce
-    90.33% 
-    <br>
+    <b>HSC (2021)</b><br>
+    90.33%
   </div>
 
   <div class="card">
-    <b>SSC (10th)</b>
-    2019
-    Udayachal High School
+    <b>SSC (2019)</b><br>
     85.60%
-    <br>
   </div>
+</section>
 
-
+<!-- SKILLS -->
 <section id="skills">
   <h2>Skills</h2>
   <div class="card skills">
@@ -205,6 +212,7 @@ h2 {
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
   <h2>Projects</h2>
 
@@ -213,7 +221,7 @@ h2 {
       Spatio Temporal Crime Analysis
     </div>
     <br>
-    Data-driven analysis of crime patterns using time and location-based datasets.
+    Crime pattern analysis using spatial and time-based datasets.
   </div>
 
   <div class="card">
@@ -221,44 +229,36 @@ h2 {
       Cloud Expense Tracker
     </div>
     <br>
-    Full-stack expense tracking system with authentication login, monthly/yearly breakdowns.
+    SaaS-based expense tracker with authentication and analytics dashboard.
   </div>
-</section>
 
-<div class="card">
-    <div class="project-title" onclick="openModal('p2')">
+  <div class="card">
+    <div class="project-title" onclick="openModal('p3')">
       Air Quality Monitoring System
     </div>
     <br>
-    IoT-based system to monitor and analyze air quality using sensors and data visualization.
+    IoT-based system for real-time air quality monitoring using sensors.
   </div>
-</section>
 
-<div class="card">
-    <div class="project-title" onclick="openModal('p2')">
+  <div class="card">
+    <div class="project-title" onclick="openModal('p4')">
       AI Image Generation Website
     </div>
     <br>
-    Web application that generates images based on user prompts using API Key.
-</section>
-
-
-<section id="contact">
-  <h2>Contact</h2>
-  <div class="card">
-    LinkedIn: 
-    <a href="https://linkedin.com/purvaghadge" target="_blank">View Profile</a><br><br>
-
-    GitHub: 
-    <a href="https://github.com/purvaghadge" target="_blank">View Projects</a>
-    
-    Contact Email: purvaghadgesns@gmail.com
-
-    Contact Number: +91 9702313681
+    AI-based image generator using API prompts.
   </div>
 </section>
 
-
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <b>LinkedIn:</b> <a href="https://linkedin.com/in/purvaghadge" target="_blank">Profile</a><br><br>
+    <b>GitHub:</b> <a href="https://github.com/purvaghadge" target="_blank">Projects</a><br><br>
+    <b>Email:</b> purvaghadgesns@gmail.com<br>
+    <b>Phone:</b> +91 XXXXX XXXXX
+  </div>
+</section>
 
 <!-- MODAL -->
 <div id="modal" class="modal">
@@ -273,25 +273,19 @@ function openModal(project) {
   let text = "";
 
   if(project === "p1") {
-    text = `
-      <h3>Spatio Temporal Crime Analysis</h3>
-      <p>
-      This project analyzes crime data based on geography and time patterns.  
-      It identifies high-risk zones, peak crime hours, and trends using data visualization techniques.  
-      The goal is to support better decision-making for safety and planning.
-      </p>
-    `;
+    text = "<h3>Spatio Temporal Crime Analysis</h3><p>Analyzes crime patterns using spatial + time data to detect hotspots and trends.</p>";
   }
 
   if(project === "p2") {
-    text = `
-      <h3>Expense Tracker SaaS App</h3>
-      <p>
-      A full-stack SaaS application for tracking personal expenses in a structured way.  
-      It provides monthly and yearly breakdowns, authentication, and a dashboard-based analytics view.  
-      The system helps users understand spending patterns and improve financial planning.
-      </p>
-    `;
+    text = "<h3>Cloud Expense Tracker</h3><p>SaaS app for tracking expenses with login, dashboards and analytics.</p>";
+  }
+
+  if(project === "p3") {
+    text = "<h3>Air Quality Monitoring System</h3><p>IoT system using sensors to monitor pollution levels in real time.</p>";
+  }
+
+  if(project === "p4") {
+    text = "<h3>AI Image Generator</h3><p>Web app that generates images using AI prompt-based API integration.</p>";
   }
 
   document.getElementById("modal-text").innerHTML = text;
