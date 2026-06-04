@@ -61,47 +61,20 @@ nav a:hover{
   padding:70px 20px 50px;
 }
 
-/* PROFILE IMAGE */
-
 .profile-pic{
-
   width:220px;
   height:220px;
-
   border-radius:50%;
   object-fit:cover;
-
   border:5px solid white;
-
-  box-shadow:
-    0 0 12px rgba(255,255,255,0.25),
-    0 0 30px rgba(96,165,250,0.35),
-    0 15px 40px rgba(0,0,0,0.55);
-
+  box-shadow:0 0 12px rgba(255,255,255,0.25),
+             0 0 30px rgba(96,165,250,0.35),
+             0 15px 40px rgba(0,0,0,0.55);
   transition:0.4s ease;
-
 }
 
 .profile-pic:hover{
-
   transform:scale(1.05);
-
-  box-shadow:
-    0 0 20px rgba(255,255,255,0.45),
-    0 0 45px rgba(96,165,250,0.55),
-    0 20px 50px rgba(0,0,0,0.65);
-
-}
-
-.hero h1{
-  font-size:42px;
-  margin-top:22px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  color:#cbd5e1;
-  font-size:18px;
 }
 
 /* SECTION */
@@ -119,37 +92,19 @@ h2{
 /* CARD */
 
 .card{
-
   background:linear-gradient(145deg,#111c33,#182846);
-
   padding:20px;
   margin:16px 0;
-
   border-radius:18px;
-
   border:1px solid rgba(255,255,255,0.10);
-
   line-height:1.7;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.35),
-    inset 0 1px 1px rgba(255,255,255,0.04);
-
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
   transition:0.35s ease;
-
 }
 
 .card:hover{
-
   transform:translateY(-6px);
-
   border:1px solid rgba(147,197,253,0.45);
-
-  box-shadow:
-    0 0 15px rgba(96,165,250,0.18),
-    0 0 35px rgba(96,165,250,0.12),
-    0 18px 40px rgba(0,0,0,0.5);
-
 }
 
 /* SKILLS */
@@ -161,32 +116,9 @@ h2{
   margin:6px;
   border-radius:10px;
   font-size:13px;
-  transition:0.3s;
 }
 
-.skills span:hover{
-  background:#2563eb;
-  transform:scale(1.05);
-}
-
-/* PROJECTS */
-
-.project-title{
-  cursor:pointer;
-  color:#93c5fd;
-  font-weight:600;
-  display:inline-block;
-  margin-bottom:6px;
-  font-size:18px;
-}
-
-.project-title:hover{
-  color:#60a5fa;
-}
-
-.project-links{
-  margin-top:14px;
-}
+/* PROJECT BUTTONS */
 
 .project-links a{
   display:inline-block;
@@ -204,7 +136,6 @@ h2{
 
 .project-links a:hover{
   background:#3b82f6;
-  transform:scale(1.05);
 }
 
 /* CONTACT */
@@ -214,59 +145,12 @@ h2{
   text-decoration:none;
 }
 
-.contact-links a:hover{
-  color:#60a5fa;
-}
-
-/* MODAL */
-
-.modal{
-  display:none;
-  position:fixed;
-  top:10px;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.75);
-}
-
-.modal-content{
-  background:linear-gradient(145deg,#111c33,#182846);
-  padding:25px;
-  width:45%;
-  margin:8% auto;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,0.10);
-
-  box-shadow:
-    0 10px 40px rgba(0,0,0,0.6),
-    0 0 25px rgba(96,165,250,0.12);
-}
-
-.close{
-  float:right;
-  cursor:pointer;
-  color:#ff6b6b;
-  font-size:20px;
-}
-
 /* MOBILE */
 
 @media(max-width:768px){
-
   nav{
     flex-direction:column;
     gap:12px;
-    padding:18px;
-  }
-
-  nav div:last-child{
-    text-align:center;
-  }
-
-  nav a{
-    display:inline-block;
-    margin:5px;
   }
 
   section{
@@ -277,24 +161,10 @@ h2{
     font-size:30px;
   }
 
-  .hero p{
-    font-size:15px;
-  }
-
-  .logo{
-    font-size:24px;
-  }
-
   .profile-pic{
     width:180px;
     height:180px;
   }
-
-  .modal-content{
-    width:82%;
-    margin-top:40%;
-  }
-
 }
 
 </style>
@@ -306,15 +176,14 @@ h2{
 
 <nav>
 
-  <div class="logo">
-    👩‍💻 Purva Ghadge
-  </div>
+  <div class="logo">👩‍💻 Purva Ghadge</div>
 
   <div>
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#education">Education</a>
     <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
@@ -324,403 +193,153 @@ h2{
 <!-- HERO -->
 
 <div class="hero">
-
-  <!-- CHANGE IMAGE NAME HERE IF NEEDED -->
-  <!-- Example: purva.png OR purva.jpeg -->
-
   <img src="Resume pic.png" class="profile-pic">
 
   <h1>🚀 Computer Science Post Graduate</h1>
 
-  <p>
-    AI • Data • Full Stack • Real-world problem solving • Cloud
-  </p>
-
+  <p>AI • Data • Full Stack • Cloud • Problem Solving</p>
 </div>
 
 <!-- ABOUT -->
-
 <section id="about">
-
-  <h2>🧠 About Me</h2>
-
-  <div class="card">
-
-Computer Science postgraduate with strong interest in Artificial Intelligence, data analytics, cloud computing, and full-stack development. Skilled in designing and developing scalable, efficient, and user-focused software solutions.
-Passionate about applying technical knowledge to solve real-world problems and continuously improving through hands-on project experience and learning emerging technologies.
-
-  </div>
-
+<h2>🧠 About Me</h2>
+<div class="card">
+Computer Science postgraduate with interest in AI, Data, Cloud and Full Stack Development.
+</div>
 </section>
 
 <!-- EXPERIENCE -->
-
 <section id="experience">
+<h2>💼 Experience</h2>
 
-  <h2>💼 Experience</h2>
+<div class="card">
+<b>Bhanzu</b><br>
+Math Trainer (2025–Present)
+</div>
 
-  <div class="card">
-
-    <b>Bhanzu (Remote) 👨‍🏫</b>
-
-    <br>
-
-    Math Trainer
-    <br>
-   Jan 2025-Present
-    <br><br>
-
-    • Conducted engaging live sessions for students aged 10–16 years.
-
-    <br>
-
-    • Designed interactive learning methods to improve conceptual understanding.
-
-    <br>
-
-    • Improved student participation and overall learning experience.
-
-  </div>
-
-  <div class="card">
-
-    <b>Amazeheads LLP 🤖</b>
-    <br>
-    June 2024-November 2024
-
-    <br>
-
-    Robotics Trainer
-
-    <br><br>
-
-    • Trained teachers and students in Robotics and MIT App Inventor.
-
-    <br>
-
-    • Conducted workshops and technical exhibitions in schools.
-
-    <br>
-
-    • Encouraged practical STEM learning through hands-on activities.
-
-  </div>
-
+<div class="card">
+<b>Amazeheads LLP</b><br>
+Robotics Trainer (2024)
+</div>
 </section>
 
 <!-- EDUCATION -->
-
 <section id="education">
+<h2>🎓 Education</h2>
 
-  <h2>🎓 Education</h2>
+<div class="card">
+MSc Computer Science (2024–2026)
+</div>
 
-  <div class="card">
-
-    <b>MSc Computer Science</b> (2024–2026)
-
-    <br>
-
-    D.G. Ruparel College of Arts,Science and Commerce, Mumbai University
-
-  </div>
-
-  <div class="card">
-
-    <b>BSc Computer Science</b> (2021–2024)
-    <br>
-    SIES College of Arts, Science and Commerce, Mumbai University
-    <br>
-
-    Graduated with 9.06 CGPA
-
-  </div>
-
-  <div class="card">
-
-    <b>HSC(2021)</b>
-    <br>
-    Maharashtra State Board
-
-    <br>
-
-    Scored 90.33%
-
-  </div>
-
-  <div class="card">
-
-    <b>SSC(2019)</b>
-    <br>
-    Maharashtra State Board
-
-    <br>
-
-    Scored 85.60%
-
-  </div>
-
+<div class="card">
+BSc Computer Science (CGPA 9.06)
+</div>
 </section>
 
 <!-- SKILLS -->
-
 <section id="skills">
+<h2>⚡ Skills</h2>
 
-  <h2>⚡ Skills</h2>
+<div class="card skills">
+<span>Python</span>
+<span>Flask</span>
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>SQL</span>
+<span>Cloud</span>
+<span>AI</span>
+<span>IoT</span>
+</div>
+</section>
 
-  <div class="card skills">
+<!-- CERTIFICATIONS -->
+<section id="certifications">
 
-    <span>Python</span>
-    <span>Flask</span>
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>SQL</span>
-    <span>Cloud ☁️</span>
-    <span>AI 🤖</span>
-    <span>Networking</span>
-    <span>Firebase</span>
-    <span>IoT</span>
+<h2>🏅 Certifications</h2>
 
-  </div>
+<div class="card">
+<b>Oracle Cloud Certification (Latest)</b>
+<p>Cloud infrastructure certification from Oracle.</p>
+
+<div class="project-links">
+<a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=53D100DAFF69B687176D330016112934A12A1F39043EB9F40BCD3F08081801C9" target="_blank">🔗 View Badge</a>
+<a href="certificates/oracle.pdf" target="_blank">📄 View Certificate</a>
+</div>
+</div>
+
+<div class="card">
+<b>NPTEL Certification</b>
+
+<div class="project-links">
+<a href="certificates/nptel.pdf" target="_blank">📄 View Certificate</a>
+</div>
+</div>
+
+<div class="card">
+<b>Bootstrap Certification</b>
+
+<div class="project-links">
+<a href="certificates/bootstrap.pdf" target="_blank">📄 View Certificate</a>
+</div>
+</div>
+
+<div class="card">
+<b>Personality Development Certification</b>
+
+<div class="project-links">
+<a href="certificates/personality.pdf" target="_blank">📄 View Certificate</a>
+</div>
+</div>
 
 </section>
 
 <!-- PROJECTS -->
-
 <section id="projects">
+<h2>📁 Projects</h2>
 
-  <h2>📁 Projects</h2>
+<div class="card">
+<b>Spatio Temporal Crime Analysis</b>
+<div class="project-links">
+<a href="https://github.com/purvaghadge/crime_prediction_app" target="_blank">GitHub</a>
+</div>
+</div>
 
-  <!-- PROJECT 1 -->
-
-  <div class="card">
-
-    <div class="project-title" onclick="openModal('p1')">
-      📍 Spatio Temporal Crime Analysis
-    </div>
-
-    <br>
-
-    Crime pattern detection using location-based and time-based analytics.
-
-    <div class="project-links">
-
-      <a href="https://github.com/purvaghadge/crime_prediction_app" target="_blank">
-        🔗 GitHub
-      </a>
-
-    </div>
-
-  </div>
-
-  <!-- PROJECT 2 -->
-
-  <div class="card">
-
-    <div class="project-title" onclick="openModal('p2')">
-      💰 Cloud Expense Tracker
-    </div>
-
-    <br>
-
-    SaaS-based expense tracking platform with authentication and analytics.
-
-    <div class="project-links">
-
-      <a href="https://expensetracker-bejz.onrender.com" target="_blank">
-        🚀 Live Demo
-      </a>
-
-    </div>
-
-  </div>
-
-  <!-- PROJECT 3 -->
-
-  <div class="card">
-
-    <div class="project-title" onclick="openModal('p3')">
-      🌫️ Air Quality Monitoring System
-    </div>
-
-    <br>
-
-    IoT-based real-time air pollution monitoring system using sensors.
-
-  </div>
-
-  <!-- PROJECT 4 -->
-
-  <div class="card">
-
-    <div class="project-title" onclick="openModal('p4')">
-      🎨 AI Image Generator
-    </div>
-
-    <br>
-
-    AI-powered image generation system using prompt engineering.
-
-  </div>
+<div class="card">
+<b>Cloud Expense Tracker</b>
+<div class="project-links">
+<a href="https://expensetracker-bejz.onrender.com" target="_blank">Live</a>
+</div>
+</div>
 
 </section>
 
 <!-- CONTACT -->
-
 <section id="contact">
 
-  <h2>📬 Contact</h2>
+<h2>📬 Contact</h2>
 
-  <div class="card contact-links">
+<div class="card contact-links">
 
-    🔗 LinkedIn:
-    <a href="https://linkedin.com/in/purvaghadge" target="_blank">
-      View Profile
-    </a>
+LinkedIn:
+<a href="https://linkedin.com" target="_blank">Profile</a>
 
-    <br><br>
+<br><br>
 
-    💻 GitHub:
-    <a href="https://github.com/purvaghadge" target="_blank">
-      View Projects
-    </a>
+GitHub:
+<a href="https://github.com" target="_blank">Profile</a>
 
-    <br><br>
+<br><br>
 
-    📧 Email:
-    purvaghadgesns@gmail.com
+Email: purvaghadgesns@gmail.com
 
-    <br><br>
+<br><br>
 
-    📱 Phone:
-    +91 9702313681
-
-  </div>
-
-</section>
-
-<!-- MODAL -->
-
-<div id="modal" class="modal">
-
-  <div class="modal-content">
-
-    <span class="close" onclick="closeModal()">✖</span>
-
-    <div id="modal-text"></div>
-
-  </div>
+Phone: +91 XXXXX XXXXX
 
 </div>
 
-<!-- SCRIPT -->
-
-<script>
-
-function openModal(project){
-
-  let text = "";
-
-  if(project === "p1"){
-
-    text =
-    `
-    <h2>📍 Spatio Temporal Crime Analysis</h2>
-
-    <p>
-This project focuses on analyzing crime patterns using spatial and temporal datasets to identify hotspots, trends, and predictive insights.<br>
-Built using the Chicago crime dataset, it applies data analytics and machine learning techniques to uncover meaningful crime patterns over time and across locations.<br>
-A separate criminal database is also maintained to track offenders and their current status with detailed records.<br>
-The system evaluates multiple prediction methods to determine the most effective model for crime forecasting.<br>
-Interactive map visualizations are used to highlight crime-prone regions and improve data interpretation.
-</p>
-
-<p>
-<b>Technologies Used:</b><br>
-Python, Data Analytics, Data Visualization, Machine Learning, Flask, SQL, REST APIs
-    </p>
-    `;
-  }
-
-  if(project === "p2"){
-
-    text =
-    `
-    <h2>💰 Cloud Expense Tracker</h2>
-
-    <p>
-A modern SaaS-based expense management platform featuring secure authentication, interactive dashboards, analytics, and a fully responsive user interface.<br>
-The system enables users to track their personal expenses efficiently and gain clear visual insights through analytics and data visualization.<br>
-The primary goal of the project is to demonstrate cloud-ready application development using modern deployment technologies.
-</p>
-
-<p>
-<b>Technologies Used:</b><br>
-Flask, Firebase, HTML, CSS, JavaScript, Python
-    </p>
-    `;
-  }
-
-  if(project === "p3"){
-
-    text =
-    `
-    <h2>🌫️ Air Quality Monitoring System</h2>
-
-    <p>
-An IoT-based environmental monitoring system designed to track pollution levels and real-time environmental data using sensor networks.<br>
-The system utilizes multiple sensors such as MQ2 and MQ3 along with Arduino R3 for data collection and processing.<br>
-Collected data is transmitted and displayed through a simple Android application, providing a user-friendly interface for real-time monitoring of environmental conditions.
-</p>
-
-<p>
-<b>Technologies Used:</b><br>
-Python, HTML, CSS, JavaScript, Android Studio, Java, Arduino
-
-    </p>
-    `;
-  }
-
-  if(project === "p4"){
-
-    text =
-    `
-    <h2>🎨 AI Image Generator</h2>
-
-    <p>
-   An AI-powered application that generates visual content using prompt-based input systems.<br>
-The system leverages AI APIs to transform user prompts into meaningful and relevant visual outputs, providing an intuitive and interactive user experience.
-</p>
-
-<p>
-<b>Technologies Used:</b><br>
-HTML, CSS, JavaScript, OpenAI API, Bootstrap
-    </p>
-    </p>
-    `;
-  }
-
-  document.getElementById("modal-text").innerHTML = text;
-
-  document.getElementById("modal").style.display = "block";
-}
-
-function closeModal(){
-
-  document.getElementById("modal").style.display = "none";
-}
-
-window.onclick = function(event){
-
-  let modal = document.getElementById("modal");
-
-  if(event.target == modal){
-
-    modal.style.display = "none";
-  }
-}
-
-</script>
+</section>
 
 </body>
 </html>
