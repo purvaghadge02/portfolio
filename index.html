@@ -39,38 +39,31 @@
       line-height: 1.6;
     }
 
-    /* Animated Backdrop */
-    /* Enhanced Canvas Backdrop Layer */
-    #fluid-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-    .mesh-bg {
-      position: fixed; 
-      inset: 0; 
-      z-index: 0; 
-      pointer-events: none;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(96, 165, 250, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(0, 255, 178, 0.04) 0%, transparent 50%);
-    }
-    /*.mesh-bg {
-      position: fixed; inset: -10%; z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(38% 32% at 18% 22%, rgba(96, 165, 250, 0.12), transparent 60%),
-        radial-gradient(34% 30% at 82% 18%, rgba(37, 99, 235, 0.12), transparent 60%),
-        radial-gradient(40% 36% at 50% 88%, rgba(0, 255, 178, 0.06), transparent 60%);
-      background-size: 180% 180%;
-      animation: meshDrift 22s ease-in-out infinite alternate;
-    } */
-    
-    @keyframes meshDrift {
-      0% { background-position: 0% 0%; transform: rotate(0deg) scale(1); }
-      50% { background-position: 20% 30%; transform: rotate(2deg) scale(1.04); }
-      100% { background-position: 10% 20%; transform: rotate(-1deg) scale(1.02); }
-    }
+   /* ---- animated mesh gradient backdrop ---- */
+.mesh-bg{
+  position:fixed; inset:-10%; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(38% 32% at 18% 22%, rgba(0,212,255,0.16), transparent 60%),
+    radial-gradient(34% 30% at 82% 18%, rgba(108,99,255,0.15), transparent 60%),
+    radial-gradient(40% 36% at 50% 88%, rgba(0,255,178,0.10), transparent 60%),
+    radial-gradient(30% 26% at 85% 78%, rgba(0,212,255,0.10), transparent 60%);
+  background-size: 180% 180%;
+  animation: meshDrift 22s ease-in-out infinite alternate;
+  filter: saturate(1.1);
+}
+@keyframes meshDrift{
+  0%{ background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%; transform: rotate(0deg) scale(1); }
+  50%{ background-position: 20% 30%, 80% 20%, 40% 80%, 80% 70%; transform: rotate(2deg) scale(1.04); }
+  100%{ background-position: 10% 20%, 90% 10%, 60% 90%, 90% 85%; transform: rotate(-1deg) scale(1.02); }
+}
+@media (max-width:700px){ .mesh-bg{ display:none; } }
+@media (hover:none){ body{ cursor:auto; } }
+::selection{ background: var(--primary); color:#00121a; }
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+h1,h2,h3{ font-family: var(--disp); }
+
 
     /* Custom Cursor */
     .cursor-dot, .cursor-ring {
@@ -80,7 +73,7 @@
     .cursor-dot { width: 6px; height: 6px; background: var(--primary); box-shadow: 0 0 10px var(--primary); }
     .cursor-ring { width: 34px; height: 34px; border: 1.5px solid rgba(96, 165, 250, 0.5); transition: width .2s, height .2s, border-color .2s, background .2s; }
     .cursor-ring.hover { width: 56px; height: 56px; background: rgba(96, 165, 250, 0.08); border-color: var(--accent); }
-    @media (hover: none) { .cursor-dot, .cursor-ring, .mesh-bg { display: none; } }
+    @media (hover: none) { .cursor-dot, .cursor-ring, .mesh-bg, #fluid-canvas { display: none; } }
 
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
@@ -138,8 +131,8 @@
     .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; width: 100%; }
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
     .hero-hi { font-family: var(--mono); color: var(--primary); font-size: 16px; margin-bottom: 8px; }
-    .hero-name { font-family: var(--disp); font-size: clamp(36px, 6vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; color: #fff; }
-    .hero-role { font-family: var(--mono); font-size: clamp(14px, 2vw, 18px); color: var(--accent); margin-bottom: 20px; }
+    .hero-name { font-family: var(--disp); font-size: clamp(36px, 6vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; color: #fff; min-height: 1.2em; }
+    .hero-role { font-family: var(--mono); font-size: clamp(14px, 2vw, 18px); color: var(--accent); margin-bottom: 20px; min-height: 1.4em; }
     .hero-desc { color: var(--muted); font-size: 16px; max-width: 540px; margin-bottom: 30px; }
     @media (max-width: 900px) { .hero-desc { margin: 0 auto 30px; } }
 
@@ -234,8 +227,9 @@
   </style>
 </head>
 <body>
+
 <div class="mesh-bg"></div>
- <canvas id="fluid-canvas"></canvas> <!-- Add this line here -->
+<canvas id="fluid-canvas"></canvas>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -245,7 +239,6 @@
     <div class="logo"><span>Purva Ghadge</span></div>
     <div class="nav-links">
       <a href="#about">About</a>
-      <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
@@ -260,7 +253,6 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
   <a href="#about">About</a>
-  <a href="#experience">Experience</a>
   <a href="#education">Education</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
@@ -274,10 +266,9 @@
     <div class="hero-grid">
       <div>
         <div class="hero-hi">Hi, my name is</div>
+        <!-- Kept entirely clear of initial static inner text to prevent typing overlaps -->
         <h1 class="hero-name" id="type-name"></h1>
         <div class="hero-role" id="type-role"></div>
-        <h1 class="hero-name">Purva Ghadge</h1>
-        <div class="hero-role">🚀 Computer Science Post Graduate (AI • Data • Full Stack • Cloud)</div>
         <p class="hero-desc">Passionate about engineering clean software architecture, building analytics microservices, and deploying real-world predictive models.</p>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
           <a class="action-btn btn-primary" href="#projects">Explore Work</a>
@@ -302,42 +293,6 @@
       Computer Science postgraduate passionate about AI, Data Analytics, Cloud Computing, and Full-Stack Development, with hands-on project experience. Eager to develop efficient software solutions while continuously learning emerging technologies.
     </div>
   </section>
-
-  <!-- <section id="experience">
-    <div class="eyebrow">Professional History</div>
-    <h2>💼 Experience</h2>
-    <div class="grid-2">
-      <div class="glass exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-title">Math Trainer</div>
-            <div class="exp-org">Bhanzu (Remote) 👨‍🏫</div>
-          </div>
-          <div class="exp-date">Jan 2025 - Present</div>
-        </div>
-        <ul class="exp-list">
-          <li>Conducted engaging live sessions for students aged 10–16 years.</li>
-          <li>Designed interactive learning methods to improve conceptual understanding.</li>
-          <li>Improved student participation and overall learning experience.</li>
-        </ul>
-      </div>
-
-      <div class="glass exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-title">Robotics Trainer</div>
-            <div class="exp-org">Amazeheads LLP 🤖</div>
-          </div>
-          <div class="exp-date">June 2024 - Nov 2024</div>
-        </div>
-        <ul class="exp-list">
-          <li>Trained teachers and students in Robotics and MIT App Inventor.</li>
-          <li>Conducted workshops and technical exhibitions in schools.</li>
-          <li>Encouraged practical STEM learning through hands-on activities.</li>
-        </ul>
-      </div>
-    </div>
-  </section> -->
 
   <section id="education">
     <div class="eyebrow">Academic Foundation</div>
@@ -545,11 +500,10 @@
   let height = canvas.height = window.innerHeight;
   
   const nodes = [];
-  const spacing = 55; // Distance between mesh junctions
+  const spacing = 55; 
   const mouse = { x: null, y: null, targetX: null, targetY: null };
   let time = 0;
 
-  // Track cursor velocity with attenuation damping
   window.addEventListener('mousemove', (e) => {
     mouse.targetX = e.clientX;
     mouse.targetY = e.clientY;
@@ -577,7 +531,6 @@
     time += 0.02;
     ctx.clearRect(0, 0, width, height);
 
-    // Smooth cursor coordinate easing
     if (mouse.targetX !== null) {
       mouse.x += (mouse.targetX - mouse.x) * 0.08;
       mouse.y += (mouse.targetY - mouse.y) * 0.08;
@@ -585,16 +538,13 @@
       mouse.x = null; mouse.y = null;
     }
 
-    // Process displacement calculations
     nodes.forEach(n => {
-      // Natural wave drift calculation using trigonometric variables
       const waveX = Math.sin(time + (n.baseY * 0.01)) * 6;
       const waveY = Math.cos(time + (n.baseX * 0.01)) * 6;
       
       let currentX = n.baseX + waveX;
       let currentY = n.baseY + waveY;
 
-      // Cursor repulsion engine mechanics
       if (mouse.x !== null) {
         const dx = currentX - mouse.x;
         const dy = currentY - mouse.y;
@@ -612,14 +562,12 @@
       n.x = currentX;
       n.y = currentY;
 
-      // Render micro structural node points
       ctx.fillStyle = 'rgba(96, 165, 250, 0.15)';
       ctx.beginPath();
       ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
       ctx.fill();
     });
 
-    // Draw grid connection matrix strings
     ctx.strokeStyle = 'rgba(96, 165, 250, 0.025)';
     ctx.lineWidth = 1;
     for (let i = 0; i < nodes.length; i++) {
@@ -642,14 +590,18 @@
   // ==========================================
   // 2. HERO SEQUENTIAL TYPING ENGINE
   // ==========================================
+  let isTypingStarted = false; 
+
   function typeEffect(elementId, text, speed, callback) {
     let index = 0;
     const element = document.getElementById(elementId);
-    element.innerHTML = "";
+    if (!element) return;
+    
+    element.textContent = ""; 
     
     function type() {
       if (index < text.length) {
-        element.innerHTML += text.charAt(index);
+        element.textContent += text.charAt(index);
         index++;
         setTimeout(type, speed);
       } else if (callback) {
@@ -659,15 +611,20 @@
     type();
   }
 
-  // Trigger typewriter matrix sequencing on page load completion
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      typeEffect("type-name", "Purva Ghadge", 75, () => {
-        typeEffect("type-role", "🚀 Computer Science Post Graduate (AI • Data • Full Stack • Cloud)", 40);
-      });
-    }, 400); // Tiny offset waiting for initial DOM draw operations
-  });
-  
+  function startHeroAnimation() {
+    if (isTypingStarted) return;
+    isTypingStarted = true;
+    
+    typeEffect("type-name", "Purva Ghadge", 75, () => {
+      typeEffect("type-role", "🚀 Computer Science Post Graduate (AI • Data • Full Stack • Cloud)", 40);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', () => setTimeout(startHeroAnimation, 300));
+  } else {
+    setTimeout(startHeroAnimation, 300);
+  }
 </script>
 
 </body>
