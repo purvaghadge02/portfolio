@@ -77,6 +77,20 @@ h1,h2,h3{ font-family: var(--disp); }
 
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
+    cles{ position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.55; }
+
+/* ---- particle canvas ---- */
+#particles{ position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.55; }
+
+/* ---- glow blobs ---- */
+.blob{ position:fixed; border-radius:50%; filter: blur(110px); opacity:.35; z-index:0; pointer-events:none; }
+.blob-1{ width:520px; height:520px; background: var(--primary); top:-160px; left:-120px; }
+.blob-2{ width:480px; height:480px; background: var(--secondary); bottom:-140px; right:-100px; }
+.blob-3{ width:380px; height:380px; background: var(--accent); top:40%; left:50%; opacity:.15; }
+
+.wrap{ max-width:1240px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+
+
     /* Navigation */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
