@@ -110,24 +110,32 @@
       box-shadow: 0 22px 40px -20px rgba(0, 255, 178, 0.15);
     }
 
-    /* Hero Unit Configuration */
+    /* Hero Layout Config */
     .hero { min-height: 95vh; display: flex; align-items: center; padding-top: 80px; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; width: 100%; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; width: 100%; }
     @media (max-width: 950px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
     .hero-hi { font-family: var(--mono); color: var(--primary); font-size: 15px; margin-bottom: 12px; }
     .hero-name { font-family: var(--disp); font-size: clamp(40px, 7vw, 64px); font-weight: 800; line-height: 1.05; margin-bottom: 18px; color: #fff; }
     .hero-role { font-family: var(--mono); font-size: clamp(14px, 2.2vw, 19px); color: var(--accent); margin-bottom: 24px; }
     
+    /* Hero Image Container Block */
+    .hero-avatar-box {
+      position: relative; width: 280px; height: 280px; margin: 0 auto;
+      border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .hero-avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+
     /* Terminal Console Feature */
     .terminal-window {
       background: #04060c; border: 1px solid var(--border); border-radius: 10px;
       font-family: var(--mono); text-align: left; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      max-width: 460px; margin: 0 auto;
+      max-width: 460px; margin: 24px auto 0;
     }
     .terminal-header { background: #0c101c; padding: 10px 16px; display: flex; gap: 6px; align-items: center; border-bottom: 1px solid var(--border); }
     .t-dot { width: 10px; height: 10px; border-radius: 50%; }
     .t-r { background: #ef4444; } .t-y { background: #eab308; } .t-g { background: #22c55e; }
-    .terminal-body { padding: 18px; font-size: 13px; min-height: 140px; color: #a7f3d0; }
+    .terminal-body { padding: 18px; font-size: 13px; min-height: 120px; color: #a7f3d0; }
     .t-prompt { color: var(--primary); }
 
     /* Interactive Magnetic Elements */
@@ -142,7 +150,7 @@
     .btn-outline { border: 1px solid var(--border); color: var(--text); background: rgba(255,255,255,0.02); }
     .btn-outline:hover { border-color: var(--accent); color: #fff; box-shadow: 0 0 15px rgba(0, 255, 178, 0.2); }
 
-    /* Grid Engines */
+    /* Structuring Grids */
     .grid-1 { display: grid; grid-template-columns: 1fr; gap: 24px; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -159,20 +167,20 @@
     .exp-list li { font-size: 14px; color: var(--muted); margin-bottom: 8px; padding-left: 18px; position: relative; }
     .exp-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
 
-    /* Metrics Progress Architecture */
+    /* Skill Progress Elements */
     .skill-metric-row { margin-bottom: 18px; }
     .skill-label-bar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; margin-bottom: 6px; }
     .skill-track { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; position: relative; }
     .skill-progress { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--accent)); width: 0; transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1); }
 
-    /* Micro-Interactive Projects */
+    /* Projects Architecture */
     .proj-card { cursor: pointer; position: relative; overflow: hidden; }
     .proj-title { font-family: var(--disp); font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
     .proj-card:hover .proj-title { color: var(--accent); }
     .proj-tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
     .proj-tag { font-family: var(--mono); font-size: 10px; background: rgba(255,255,255,0.04); padding: 3px 8px; border-radius: 4px; color: var(--primary); }
 
-    /* Modal Platform Layer */
+    /* Modals Platform Layer */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(7, 10, 19, 0.85); backdrop-filter: blur(12px);
       z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;
@@ -187,7 +195,7 @@
     .modal-overlay.open .modal-box { transform: translateY(0); }
 
     /* High Tech Message Input Console Terminal */
-    .message-console { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; }
+    .message-console { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 32px; }
     @media (max-width: 900px) { .message-console { grid-template-columns: 1fr; } }
     .contact-form-shell { display: flex; flex-direction: column; gap: 16px; }
     .input-node-group { position: relative; }
@@ -200,8 +208,7 @@
     .input-field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 12px rgba(0, 255, 178, 0.15); background: rgba(7, 10, 19, 0.8); }
     textarea.input-field { min-height: 120px; resize: vertical; }
 
-    .contact-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    @media (max-width: 650px) { .contact-container { grid-template-columns: 1fr; } }
+    .contact-container { display: grid; grid-template-columns: 1fr; gap: 12px; }
     .c-node { display: flex; align-items: center; gap: 14px; text-decoration: none; padding: 16px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); transition: all 0.2s; }
     .c-node:hover { background: rgba(0, 255, 178, 0.03); border-color: var(--accent); }
     .c-meta div { font-size: 12px; color: var(--muted); font-family: var(--mono); }
@@ -218,10 +225,10 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- Core Unified Header -->
+<!-- Navigation Header Layout -->
 <nav>
   <div class="nav-inner">
-    <a href="#home" class="logo">Purva<span>.dev</span></a>
+    <a href="#home" class="logo">Purva Ghadge</a>
     <div class="nav-links">
       <a href="#about">// about</a>
       <a href="#experience">// experience</a>
@@ -245,7 +252,7 @@
   <a href="#contact">Contact</a>
 </div>
 
-<!-- Upgraded Hero Unit with Integrated Download Actions Trigger Layouts -->
+<!-- Hero Unit Structure -->
 <section class="hero" id="home">
   <div class="wrap">
     <div class="hero-grid">
@@ -255,12 +262,16 @@
         <div class="hero-role">🚀 Postgraduate Systems & Software Engineer</div>
         <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px;">
           <div class="magnetic-wrap"><a class="action-btn btn-primary" href="#projects">Explore Infrastructure</a></div>
-          <!-- Download Resume Terminal Core Link Action Element -->
           <div class="magnetic-wrap"><a class="action-btn btn-outline" href="Purva_Ghadge_Resume.pdf" download="Purva_Ghadge_Resume.pdf">📥 Download Resume</a></div>
         </div>
       </div>
       <div>
-        <!-- Terminal Script Component Structure -->
+        <!-- Hero Graphic Frame Layer (Profile Picture Container Setup) -->
+        <div class="hero-avatar-box">
+          <img src="your-photo-path.jpg" alt="Purva Ghadge Profile Image Asset">
+        </div>
+        
+        <!-- Code Terminal Engine Container Box -->
         <div class="terminal-window">
           <div class="terminal-header">
             <div class="t-dot t-r"></div><div class="t-dot t-y"></div><div class="t-dot t-g"></div>
@@ -285,7 +296,7 @@
     </div>
   </section>
 
-  <!-- Experience Track (Math Trainer Removed Successfully) -->
+  <!-- Experience Track -->
   <section id="experience">
     <div class="eyebrow">Professional History</div>
     <h2>💼 Experience Matrix</h2>
@@ -420,7 +431,7 @@
     <h2>📬 Route Transmission Console</h2>
     
     <div class="glass message-console">
-      <!-- Form Input Array Sub-block Frame Elements -->
+      <!-- Contact Transmission Form Sub-block -->
       <form class="contact-form-shell" onsubmit="handleFormSubmission(event)">
         <div class="input-node-group">
           <label>Ident_Name</label>
@@ -440,9 +451,9 @@
       </form>
 
       <!-- Network Metadata Nodes -->
-      <div style="display:flex; flex-direction:column; justify-content:space-between; gap:20px;">
+      <div style="display:flex; flex-direction:column; justify-content:flex-start; gap:20px;">
         <p style="color:var(--muted); font-size:14px;">Connect with my external pipelines via direct nodes, or inject data arrays through the communication packet interface directly.</p>
-        <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="contact-container">
           <a href="https://linkedin.com/in/purvaghadge" target="_blank" class="c-node">
             <div class="c-meta"><div>LINKEDIN PROFILE</div><span>linkedin.com/in/purvaghadge</span></div>
           </a>
@@ -463,7 +474,7 @@
   <p>© 2026 Purva Ghadge. Synchronized via dynamic interaction matrix schemas.</p>
 </footer>
 
-<!-- Modals Grid Target Container Shell Elements -->
+<!-- Project Modals Container -->
 <div id="projectModal" class="modal-overlay" onclick="closeProjectModal(event)">
   <div class="modal-box">
     <button class="mobile-close" style="float: right; font-size: 20px;" onclick="document.getElementById('projectModal').classList.remove('open')">✕</button>
@@ -501,7 +512,6 @@
   function animateLiquidMesh(t) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    // Smooth interpolations coordinates parameters tracking metrics safely
     if(mouse.targetX !== null) {
       if(mouse.x === null) { mouse.x = mouse.targetX; mouse.y = mouse.targetY; }
       mouse.x += (mouse.targetX - mouse.x) * 0.08;
@@ -512,7 +522,6 @@
     ctx.lineWidth = 1;
 
     points.forEach((p, idx) => {
-      // Fluid calculation algorithms mechanics loops setup matrices configurations
       let wave = Math.sin(t * 0.0015 + (p.baseX * 0.01) + (p.baseY * 0.008)) * 4;
       p.y = p.baseY + wave;
       
@@ -530,7 +539,6 @@
       p.x += (p.baseX - p.x) * 0.05;
       p.y += (p.baseY - p.y) * 0.05;
 
-      // Draw minimal interconnected grid node strings structures fields maps
       if(idx % 2 === 0 && points[idx+1] && points[idx+5]) {
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
@@ -568,7 +576,7 @@
   }, { threshold: 0.1 });
   skillObserver.observe(document.getElementById('skills'));
 
-  // Live Auto Typist Engine Arrays Logic
+  // Live Auto Typist Engine Logic
   const textStrings = [
     "pip install computer-science-postgrad",
     "loading mathematical_models.py... DONE",
@@ -623,7 +631,7 @@
     document.getElementById('formMessage').value = '';
   }
 
-  // Project Micro Modals Architecture Details Matrix
+  // Project Modals Data Map
   const projData = {
     p1: { t: "📍 Spatio Temporal Crime Analysis", d: "Built tracking algorithms parsing spatial datasets mapping predictive logic engines variables over custom analytics pipelines cleanly.", st: "Python, Machine Learning, Analytics Frameworks, SQL, Flask Core APIs", l: `<a class="action-btn btn-primary" href="https://github.com/purvaghadge/crime_prediction_app" target="_blank">Repository Node</a>` },
     p2: { t: "💰 Cloud Expense Tracker", d: "Deployed secure ecosystem multi-tenant architecture parameters enabling seamless transaction records execution tracking parameters dashboards safely.", st: "Flask Engine, Firebase Secure Authentication, JavaScript Logic, Production Assets", l: `<a class="action-btn btn-primary" href="https://expensetracker-bejz.onrender.com" target="_blank">Execute Sandbox Environment</a>` },
