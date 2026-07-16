@@ -1,280 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Purva | Portfolio</title>
-
+  <title>Purva Ghadge — Computer Science Post Graduate</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --primary: #60a5fa;
+      --secondary: #2563eb;
+      --accent: #00FFB2;
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --card: #111c33;
+      --card-2: #182846;
+      --border: rgba(255,255,255,0.08);
+      --border-glow: rgba(96, 165, 250, 0.35);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --disp: 'Space Grotesk', sans-serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --radius: 18px;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
     }
 
-    /* NAVBAR */
+    /* Animated Backdrop */
+    .mesh-bg {
+      position: fixed; inset: -10%; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(38% 32% at 18% 22%, rgba(96, 165, 250, 0.12), transparent 60%),
+        radial-gradient(34% 30% at 82% 18%, rgba(37, 99, 235, 0.12), transparent 60%),
+        radial-gradient(40% 36% at 50% 88%, rgba(0, 255, 178, 0.06), transparent 60%);
+      background-size: 180% 180%;
+      animation: meshDrift 22s ease-in-out infinite alternate;
+    }
+    @keyframes meshDrift {
+      0% { background-position: 0% 0%; transform: rotate(0deg) scale(1); }
+      50% { background-position: 20% 30%; transform: rotate(2deg) scale(1.04); }
+      100% { background-position: 10% 20%; transform: rotate(-1deg) scale(1.02); }
+    }
+
+    /* Custom Cursor */
+    .cursor-dot, .cursor-ring {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      border-radius: 50%; transform: translate(-50%, -50%);
+    }
+    .cursor-dot { width: 6px; height: 6px; background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+    .cursor-ring { width: 34px; height: 34px; border: 1.5px solid rgba(96, 165, 250, 0.5); transition: width .2s, height .2s, border-color .2s, background .2s; }
+    .cursor-ring.hover { width: 56px; height: 56px; background: rgba(96, 165, 250, 0.08); border-color: var(--accent); }
+    @media (hover: none) { .cursor-dot, .cursor-ring, .mesh-bg { display: none; } }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* Navigation */
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 40px;
-      background: rgba(17, 28, 51, 0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      backdrop-filter: blur(16px); background: rgba(15, 23, 42, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: var(--disp); font-weight: 800; font-size: 22px; color: #fff; }
+    .logo span { background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); position: relative; padding: 4px 0; transition: color .2s; text-decoration: none; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width .25s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-toggle-mobile { display: none; font-size: 24px; color: #fff; background: none; border: none; cursor: pointer; }
+
+    /* Mobile Drawer Menu */
+    .mobile-menu {
+      position: fixed; inset: 0 0 0 auto; width: 75vw; max-width: 300px; background: var(--bg2); z-index: 150;
+      border-left: 1px solid var(--border); padding: 30px; transform: translateX(100%); transition: transform .3s ease-in-out;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a { font-size: 18px; font-weight: 600; color: var(--text); text-decoration: none; }
+    .mobile-close { align-self: flex-end; font-size: 24px; background: none; border: none; color: #ff6b6b; cursor: pointer; }
+
+    @media (max-width: 880px) {
+      .nav-links { display: none; }
+      .nav-toggle-mobile { display: block; }
     }
 
-    .logo {
-      font-size: 30px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 1px;
+    /* Core Layout Shells */
+    section { position: relative; padding: 80px 0 40px; }
+    .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--primary); display: inline-block; }
+    h2 { font-family: var(--disp); font-size: clamp(24px, 4vw, 36px); font-weight: 800; margin-bottom: 24px; }
+
+    /* Cards Layer */
+    .glass {
+      background: linear-gradient(145deg, rgba(17, 28, 51, 0.9), rgba(24, 40, 70, 0.9));
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; transition: border-color .3s, transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
+    }
+    .glass:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -20px rgba(96, 165, 250, 0.25);
     }
 
-    nav a {
-      color: #93c5fd;
-      margin-left: 16px;
-      text-decoration: none;
-      font-size: 14px;
-      transition: 0.3s;
-    }
+    /* Hero Unit */
+    .hero { min-height: 85vh; display: flex; align-items: center; padding-top: 100px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; width: 100%; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
+    .hero-hi { font-family: var(--mono); color: var(--primary); font-size: 16px; margin-bottom: 8px; }
+    .hero-name { font-family: var(--disp); font-size: clamp(36px, 6vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; color: #fff; }
+    .hero-role { font-family: var(--mono); font-size: clamp(14px, 2vw, 18px); color: var(--accent); margin-bottom: 20px; }
+    .hero-desc { color: var(--muted); font-size: 16px; max-width: 540px; margin-bottom: 30px; }
+    @media (max-width: 900px) { .hero-desc { margin: 0 auto 30px; } }
 
-    nav a:hover {
-      color: #60a5fa;
+    /* Photo Component */
+    .hero-photo-wrap { position: relative; display: flex; justify-content: center; justify-self: center; }
+    .hero-photo-glow {
+      position: absolute; width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle, var(--primary), var(--secondary) 60%, transparent 70%);
+      filter: blur(50px); opacity: .35; top: 0; z-index: 0;
+      animation: glowPulse 4.5s ease-in-out infinite;
     }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 70px 20px 50px;
-    }
-
-    /* PROFILE IMAGE */
+    @keyframes glowPulse { 0%, 100% { opacity: .3; transform: scale(1); } 50% { opacity: .45; transform: scale(1.06); } }
     .profile-pic {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid white;
-      box-shadow:
-        0 0 12px rgba(255, 255, 255, 0.25),
-        0 0 30px rgba(96, 165, 250, 0.35),
-        0 15px 40px rgba(0, 0, 0, 0.55);
-      transition: 0.4s ease;
+      position: relative; z-index: 1; width: 220px; height: 220px; border-radius: 50%;
+      object-fit: cover; border: 4px solid rgba(255,255,255,0.8);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4); transition: transform 0.4s ease;
     }
+    .profile-pic:hover { transform: scale(1.04); }
 
-    .profile-pic:hover {
-      transform: scale(1.05);
-      box-shadow:
-        0 0 20px rgba(255, 255, 255, 0.45),
-        0 0 45px rgba(96, 165, 250, 0.55),
-        0 20px 50px rgba(0, 0, 0, 0.65);
+    /* Grid Subsystems */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 850px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+    /* Experience System */
+    .exp-card { position: relative; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .exp-title { font-size: 18px; font-weight: 700; color: #fff; }
+    .exp-org { color: var(--primary); font-size: 14px; font-weight: 600; margin-top: 2px; }
+    .exp-date { font-family: var(--mono); font-size: 12px; color: var(--accent); background: rgba(0, 255, 178, 0.08); padding: 2px 8px; border-radius: 12px; }
+    .exp-list { list-style: none; margin-top: 10px; }
+    .exp-list li { font-size: 14px; color: var(--muted); margin-bottom: 6px; padding-left: 16px; position: relative; }
+    .exp-list li::before { content: '▹'; position: absolute; left: 0; color: var(--primary); }
+
+    /* Flex Skill Badges */
+    .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skills-flex span {
+      font-family: var(--mono); font-size: 13px; background: #1e293b;
+      padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
+      transition: all 0.2s ease; cursor: default;
     }
+    .skills-flex span:hover { background: var(--secondary); border-color: var(--primary); transform: translateY(-2px); color: #fff; }
 
-    .hero h1 {
-      font-size: 42px;
-      margin-top: 22px;
-      margin-bottom: 10px;
+    /* Interactive Action Components */
+    .action-btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px;
+      border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none;
+      transition: background 0.2s, transform 0.2s; border: none; cursor: pointer;
     }
+    .btn-primary { background: var(--secondary); color: white; }
+    .btn-primary:hover { background: #3b82f6; transform: translateY(-2px); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: rgba(255,255,255,0.02); }
+    .btn-outline:hover { border-color: var(--primary); color: #fff; }
 
-    .hero p {
-      color: #cbd5e1;
-      font-size: 18px;
+    .proj-card { cursor: pointer; }
+    .proj-title { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+    .proj-card:hover .proj-title { color: #fff; }
+    .proj-footer { display: flex; justify-content: flex-end; margin-top: 16px; }
+
+    /* Certifications Architecture */
+    .cert-card { display: flex; flex-direction: column; justify-content: space-between; }
+    .cert-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .cert-desc { font-size: 13.5px; color: var(--muted); margin-bottom: 14px; }
+    .cert-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Modal Framework Layer */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px);
+      z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity .25s ease;
     }
-
-    /* SECTION */
-    section {
-      padding: 40px 14%;
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal-box {
+      max-width: 580px; width: 100%; background: linear-gradient(145deg, #111c33, #182846);
+      border: 1px solid var(--border-glow); border-radius: var(--radius); padding: 30px;
+      transform: scale(.95); transition: transform .25s ease; max-height: 85vh; overflow-y: auto;
     }
+    .modal-overlay.open .modal-box { transform: scale(1); }
+    .modal-body h2 { color: #fff; margin-bottom: 12px; font-size: 24px; }
+    .modal-body p { color: var(--muted); font-size: 14.5px; line-height: 1.7; margin-bottom: 16px; }
+    .modal-tech { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 14px; }
 
-    h2 {
-      color: #60a5fa;
-      margin-bottom: 18px;
-      font-size: 24px;
-    }
+    /* Contact Details Base */
+    .contact-grid-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 600px) { .contact-grid-info { grid-template-columns: 1fr; } }
+    .c-item { display: flex; align-items: center; gap: 12px; }
+    .c-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.2); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 16px; }
+    .c-val a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .c-val a:hover { color: var(--primary); }
 
-    /* CARD */
-    .card {
-      background: linear-gradient(145deg, #111c33, #182846);
-      padding: 20px;
-      margin: 16px 0;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      line-height: 1.7;
-      box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.35),
-        inset 0 1px 1px rgba(255, 255, 255, 0.04);
-      transition: 0.35s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border: 1px solid rgba(147, 197, 253, 0.45);
-      box-shadow:
-        0 0 15px rgba(96, 165, 250, 0.18),
-        0 0 35px rgba(96, 165, 250, 0.12),
-        0 18px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    #certifications .card {
-  border-left: 4px solid #60a5fa;
-}
-
-    /* SKILLS */
-    .skills span {
-      display: inline-block;
-      background: #1e293b;
-      padding: 8px 14px;
-      margin: 6px;
-      border-radius: 10px;
-      font-size: 13px;
-      transition: 0.3s;
-    }
-
-    .skills span:hover {
-      background: #2563eb;
-      transform: scale(1.05);
-    }
-
-    /* PROJECTS */
-    .project-title {
-      cursor: pointer;
-      color: #93c5fd;
-      font-weight: 600;
-      display: inline-block;
-      margin-bottom: 6px;
-      font-size: 18px;
-    }
-
-    .project-title:hover {
-      color: #60a5fa;
-    }
-
-    .project-links {
-      margin-top: 14px;
-    }
-
-    .project-links a {
-      display: inline-block;
-      margin-right: 10px;
-      margin-top: 8px;
-      padding: 9px 16px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      background: #2563eb;
-      color: white;
-      transition: 0.3s;
-    }
-
-    .project-links a:hover {
-      background: #3b82f6;
-      transform: scale(1.05);
-    }
-
-    /* CONTACT */
-    .contact-links a {
-      color: #93c5fd;
-      text-decoration: none;
-    }
-
-    .contact-links a:hover {
-      color: #60a5fa;
-    }
-
-    /* MODAL */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: 200;
-    }
-
-    .modal-content {
-      background: linear-gradient(145deg, #111c33, #182846);
-      padding: 25px;
-      width: 45%;
-      margin: 8% auto;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.6),
-        0 0 25px rgba(96, 165, 250, 0.12);
-    }
-
-    .close {
-      float: right;
-      cursor: pointer;
-      color: #ff6b6b;
-      font-size: 20px;
-    }
-
-    /* MOBILE */
-    @media(max-width:768px) {
-      nav {
-        flex-direction: column;
-        gap: 12px;
-        padding: 18px;
-      }
-
-      nav div:last-child {
-        text-align: center;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 5px;
-      }
-
-      section {
-        padding: 30px 24px;
-      }
-
-      .hero h1 {
-        font-size: 30px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .logo {
-        font-size: 24px;
-      }
-
-      .profile-pic {
-        width: 180px;
-        height: 180px;
-      }
-
-      .modal-content {
-        width: 82%;
-        margin-top: 40%;
-      }
-    }
+    footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); }
   </style>
 </head>
-
 <body>
 
-  <nav>
-    <div class="logo">
-      👩‍💻 Purva Ghadge
-    </div>
-    <div>
+<div class="mesh-bg"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Unified Global Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Purva<span>.dev</span></div>
+    <div class="nav-links">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
@@ -283,293 +235,287 @@
       <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
     </div>
-  </nav>
-
-  <div class="hero">
-    <img src="Resume pic.png" class="profile-pic" alt="Purva Ghadge">
-    <h1>🚀 Computer Science Post Graduate</h1>
-    <p>AI • Data • Full Stack • Real-world problem solving • Cloud</p>
+    <button class="nav-toggle-mobile" id="mobileOpen">☰</button>
   </div>
+</nav>
 
+<!-- Responsive Mobile Navigation Drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#education">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- Hero Unit Section -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-hi">Hi, my name is</div>
+        <h1 class="hero-name">Purva Ghadge</h1>
+        <div class="hero-role">🚀 Computer Science Post Graduate (AI • Data • Full Stack • Cloud)</div>
+        <p class="hero-desc">Passionate about engineering clean software architecture, building analytics microservices, and deploying real-world predictive models.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="action-btn btn-primary" href="#projects">Explore Work</a>
+          <a class="action-btn btn-outline" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-glow"></div>
+        <img src="Resume pic.png" class="profile-pic" alt="Purva Ghadge">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Content Block Shell Matrix -->
+<div class="wrap">
+  
   <section id="about">
+    <div class="eyebrow">Overview</div>
     <h2>🧠 About Me</h2>
-    <div class="card">
+    <div class="glass">
       Computer Science postgraduate passionate about AI, Data Analytics, Cloud Computing, and Full-Stack Development, with hands-on project experience. Eager to develop efficient software solutions while continuously learning emerging technologies.
     </div>
   </section>
 
   <section id="experience">
+    <div class="eyebrow">Professional History</div>
     <h2>💼 Experience</h2>
-    <div class="card">
-      <b>Bhanzu (Remote) 👨‍🏫</b><br>
-      Math Trainer<br>
-      Jan 2025-Present<br><br>
-      • Conducted engaging live sessions for students aged 10–16 years.<br>
-      • Designed interactive learning methods to improve conceptual understanding.<br>
-      • Improved student participation and overall learning experience.
-    </div>
+    <div class="grid-2">
+      <div class="glass exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Math Trainer</div>
+            <div class="exp-org">Bhanzu (Remote) 👨‍🏫</div>
+          </div>
+          <div class="exp-date">Jan 2025 - Present</div>
+        </div>
+        <ul class="exp-list">
+          <li>Conducted engaging live sessions for students aged 10–16 years.</li>
+          <li>Designed interactive learning methods to improve conceptual understanding.</li>
+          <li>Improved student participation and overall learning experience.</li>
+        </ul>
+      </div>
 
-    <div class="card">
-      <b>Amazeheads LLP 🤖</b><br>
-      June 2024-November 2024<br>
-      Robotics Trainer<br><br>
-      • Trained teachers and students in Robotics and MIT App Inventor.<br>
-      • Conducted workshops and technical exhibitions in schools.<br>
-      • Encouraged practical STEM learning through hands-on activities.
+      <div class="glass exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Robotics Trainer</div>
+            <div class="exp-org">Amazeheads LLP 🤖</div>
+          </div>
+          <div class="exp-date">June 2024 - Nov 2024</div>
+        </div>
+        <ul class="exp-list">
+          <li>Trained teachers and students in Robotics and MIT App Inventor.</li>
+          <li>Conducted workshops and technical exhibitions in schools.</li>
+          <li>Encouraged practical STEM learning through hands-on activities.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section id="education">
+    <div class="eyebrow">Academic Foundation</div>
     <h2>🎓 Education</h2>
-    <div class="card">
-      <b>MSc Computer Science</b> (2024–2026)<br>
-      D.G. Ruparel College of Arts,Science and Commerce, Mumbai University
-    </div>
-    <div class="card">
-      <b>BSc Computer Science</b> (2021–2024)<br>
-      SIES College of Arts, Science and Commerce, Mumbai University<br>
-      Graduated with 9.06 CGPA
-    </div>
-    <div class="card">
-      <b>HSC (2021)</b><br>
-      Maharashtra State Board<br>
-      Scored 90.33%
-    </div>
-    <div class="card">
-      <b>SSC (2019)</b><br>
-      Maharashtra State Board<br>
-      Scored 85.60%
+    <div class="grid-2">
+      <div class="glass">
+        <strong style="color:#fff; font-size:16px;">MSc Computer Science</strong> (2024–2026)<br>
+        <span style="color:var(--primary); font-size:14px; font-weight:500;">D.G. Ruparel College, Mumbai University</span>
+      </div>
+      <div class="glass">
+        <strong style="color:#fff; font-size:16px;">BSc Computer Science</strong> (2021–2024)<br>
+        <span style="color:var(--primary); font-size:14px; font-weight:500;">SIES College, Mumbai University</span><br>
+        <small style="color:var(--accent); font-family:var(--mono);">Graduated with 9.06 CGPA</small>
+      </div>
+      <div class="glass">
+        <strong style="color:#fff; font-size:16px;">HSC (2021)</strong><br>
+        <span style="color:var(--muted); font-size:14px;">Maharashtra State Board</span><br>
+        <small style="color:var(--primary); font-family:var(--mono);">Scored 90.33%</small>
+      </div>
+      <div class="glass">
+        <strong style="color:#fff; font-size:16px;">SSC (2019)</strong><br>
+        <span style="color:var(--muted); font-size:14px;">Maharashtra State Board</span><br>
+        <small style="color:var(--primary); font-family:var(--mono);">Scored 85.60%</small>
+      </div>
     </div>
   </section>
 
   <section id="skills">
-    <h2>⚡ Skills</h2>
-    <div class="card skills">
-      <span>Python</span>
-      <span>Flask</span>
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>SQL</span>
-      <span>Cloud ☁️</span>
-      <span>AI 🤖</span>
-      <span>Networking</span>
-      <span>Firebase</span>
-      <span>GitHub</span>
-      <span> Data Analysis</span>
-      <span> Application Support</span>
-      <span>IoT</span>
+    <div class="eyebrow">Technical Capabilities</div>
+    <h2>⚡ Core Skills</h2>
+    <div class="glass skills-flex">
+      <span>Python</span><span>Flask</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+      <span>SQL</span><span>Cloud ☁️</span><span>AI 🤖</span><span>Networking</span><span>Firebase</span>
+      <span>GitHub</span><span>Data Analysis</span><span>Application Support</span><span>IoT</span>
     </div>
   </section>
 
   <section id="projects">
+    <div class="eyebrow">Demonstrated Prototypes</div>
     <h2>📁 Projects</h2>
-    <div class="card">
-      <div class="project-title" onclick="openModal('p1')">
-        📍 Spatio Temporal Crime Analysis
-      </div><br>
-      Crime pattern detection using location-based and time-based analytics.
-      <div class="project-links">
-        <a href="https://github.com/purvaghadge/crime_prediction_app" target="_blank">🔗 GitHub</a>
+    <div class="grid-2">
+      <div class="glass proj-card" onclick="openProjectModal('p1')">
+        <div class="proj-title">📍 Spatio Temporal Crime Analysis <span>↗</span></div>
+        <p style="color:var(--muted); font-size:14px;">Crime pattern detection engine leveraging geo-location analytics and time-series models.</p>
+        <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
       </div>
-    </div>
 
-    <div class="card">
-      <div class="project-title" onclick="openModal('p2')">
-        💰 Cloud Expense Tracker
-      </div><br>
-      SaaS-based expense tracking platform with authentication and analytics.
-      <div class="project-links">
-        <a href="https://expensetracker-bejz.onrender.com" target="_blank">🚀 Live Demo</a>
+      <div class="glass proj-card" onclick="openProjectModal('p2')">
+        <div class="proj-title">💰 Cloud Expense Tracker <span>↗</span></div>
+        <p style="color:var(--muted); font-size:14px;">SaaS architecture platform featuring client multi-tenant authentication workflows.</p>
+        <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
       </div>
-    </div>
 
-    <div class="card">
-      <div class="project-title" onclick="openModal('p3')">
-        🌫️ Air Quality Monitoring System
-      </div><br>
-      IoT-based real-time air pollution monitoring system using sensors.
-    </div>
+      <div class="glass proj-card" onclick="openProjectModal('p3')">
+        <div class="proj-title">🌫️ Air Quality Monitoring System <span>↗</span></div>
+        <p style="color:var(--muted); font-size:14px;">IoT environmental telemetry array syncing air safety index values metrics.</p>
+        <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
+      </div>
 
-    <div class="card">
-      <div class="project-title" onclick="openModal('p4')">
-        🎨 AI Image Generator
-      </div><br>
-      AI-powered image generation system using prompt engineering.
+      <div class="glass proj-card" onclick="openProjectModal('p4')">
+        <div class="proj-title">🎨 AI Image Generator <span>↗</span></div>
+        <p style="color:var(--muted); font-size:14px;">AI generation layer executing programmatic prompt handling models interfaces.</p>
+        <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="eyebrow">Industry Credentials</div>
+    <h2>🏅 Certifications</h2>
+    <div class="grid-3">
+      <div class="glass cert-card">
+        <div>
+          <div class="cert-title">Oracle Cloud Infrastructure</div>
+          <p class="cert-desc">Validated cloud administration workflows, architectures, and operations.</p>
+        </div>
+        <div class="cert-links">
+          <a class="action-btn btn-primary" style="padding: 6px 12px; font-size: 11px;" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=53D100DAFF69B687176D330016112934A12A1F39043EB9F40BCD3F08081801C9" target="_blank">View Badge</a>
+          <a class="action-btn btn-outline" style="padding: 6px 12px; font-size: 11px;" href="oracle.pdf" target="_blank">PDF</a>
+        </div>
+      </div>
 
-<section id="certifications">
+      <div class="glass cert-card">
+        <div>
+          <div class="cert-title">NPTEL Certification</div>
+          <p class="cert-desc">Core Computer Science program alignment verification validation.</p>
+        </div>
+        <div class="cert-links">
+          <a class="action-btn btn-outline" style="padding: 6px 12px; font-size: 11px;" href="nptel.pdf" target="_blank">View Document</a>
+        </div>
+      </div>
 
-  <h2>🏅 Certifications</h2>
-
-  <div class="card">
-
-    <b>Oracle Cloud Certification (Latest)</b>
-    <br>
-
-    <p>
-      Certified in Oracle Cloud technologies demonstrating knowledge in cloud infrastructure and services.
-    </p>
-
-    <div class="project-links">
-
-      <!-- LINK CERTIFICATE BADGE -->
-      <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=53D100DAFF69B687176D330016112934A12A1F39043EB9F40BCD3F08081801C9" target="_blank">
-        🔗 View Badge
-      </a>
-
-      <!-- PDF DOWNLOAD -->
-      <a href="oracle.pdf" target="_blank">
-        📄 View Certificate (PDF)
-      </a>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <b>NPTEL Certification</b>
-    <br>
-
-    <p>
-      Successfully completed NPTEL course with strong understanding of core computer science concepts.
-    </p>
-
-    <div class="project-links">
-
-      <a href="nptel.pdf" target="_blank">
-        📄 View Certificate
-      </a>
-
-    </div>
-
-  </div>
-
-
-
-  <div class="card">
-
-    <b>Personality Development Certification</b>
-    <br>
-
-    <p>
-      Certification in personality development focusing on communication, confidence building, and professional skills.
-    </p>
-
-    <div class="project-links">
-
-      <a href="personality.pdf" target="_blank">
-        📄 View Certificate
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-  <section id="contact">
-    <h2>📬 Contact</h2>
-    <div class="card contact-links">
-      🔗 LinkedIn: <a href="https://linkedin.com/in/purvaghadge" target="_blank">View Profile</a><br><br>
-      💻 GitHub: <a href="https://github.com/purvaghadge" target="_blank">View Projects</a><br><br>
-      📧 Email: purvaghadgesns@gmail.com<br><br>
-      📱 Phone: +91 9702313681
+      <div class="glass cert-card">
+        <div>
+          <div class="cert-title">Personality Development</div>
+          <p class="cert-desc">Professional corporate communication dynamic execution alignment focus strategies.</p>
+        </div>
+        <div class="cert-links">
+          <a class="action-btn btn-outline" style="padding: 6px 12px; font-size: 11px;" href="personality.pdf" target="_blank">View Document</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">✖</span>
-      <div id="modal-text"></div>
+  <section id="contact" style="margin-bottom: 60px;">
+    <div class="eyebrow">Get In Touch</div>
+    <h2>📬 Contact Channels</h2>
+    <div class="glass contact-grid-info">
+      <div class="c-item"><div class="c-icon">🔗</div><div class="c-val"><a href="https://linkedin.com/in/purvaghadge" target="_blank">linkedin.com/in/purvaghadge</a></div></div>
+      <div class="c-item"><div class="c-icon">💻</div><div class="c-val"><a href="https://github.com/purvaghadge" target="_blank">github.com/purvaghadge</a></div></div>
+      <div class="c-item"><div class="c-icon">📧</div><div class="c-val"><a href="mailto:purvaghadgesns@gmail.com">purvaghadgesns@gmail.com</a></div></div>
+      <div class="c-item"><div class="c-icon">📱</div><div class="c-val"><a href="tel:+919702313681">+91 9702313681</a></div></div>
     </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>© 2026 Purva Ghadge. Designed in alignment with micro-interaction schemas.</p>
+</footer>
+
+<!-- Project Case Modals Shell Grid Component -->
+<div id="projectModal" class="modal-overlay" onclick="closeProjectModal(event)">
+  <div class="modal-box">
+    <button class="mobile-close" style="float: right;" onclick="document.getElementById('projectModal').classList.remove('open')">✕</button>
+    <div id="modalTargetBody" class="modal-body"></div>
   </div>
+</div>
 
-  <script>
-    function openModal(project) {
-      let text = "";
+<script>
+  // Navigation Drawer Engine Actions
+  const mMenu = document.getElementById('mobileMenu');
+  document.getElementById('mobileOpen').addEventListener('click', () => mMenu.classList.add('open'));
+  document.getElementById('mobileClose').addEventListener('click', () => mMenu.classList.remove('open'));
+  mMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mMenu.classList.remove('open')));
 
-      if (project === "p1") {
-        text = `
-          <h2>📍 Spatio Temporal Crime Analysis</h2>
-          <p>
-            This project focuses on analyzing crime patterns using spatial and temporal datasets to identify hotspots, trends, and predictive insights.<br>
-            Built using the Chicago crime dataset, it applies data analytics and machine learning techniques to uncover meaningful crime patterns over time and across locations.<br>
-            A separate criminal database is also maintained to track offenders and their current status with detailed records.<br>
-            The system evaluates multiple prediction methods to determine the most effective model for crime forecasting.<br>
-            Interactive map visualizations are used to highlight crime-prone regions and improve data interpretation.
-          </p>
-          <p>
-            <b>Technologies Used:</b><br>
-            Python, Data Analytics, Data Visualization, Machine Learning, Flask, SQL, REST APIs
-          </p>
-        `;
-      }
+  // Tracking Cursor Interface Configuration Mechanics
+  const d = document.getElementById('cursorDot');
+  const r = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', (e) => {
+    d.style.left = e.clientX + 'px'; d.style.top = e.clientY + 'px';
+    r.style.left = e.clientX + 'px'; r.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .proj-card').forEach(el => {
+    el.addEventListener('mouseenter', () => r.classList.add('hover'));
+    el.addEventListener('mouseleave', () => r.classList.remove('hover'));
+  });
 
-      if (project === "p2") {
-        text = `
-          <h2>💰 Cloud Expense Tracker</h2>
-          <p>
-            A modern SaaS-based expense management platform featuring secure authentication, interactive dashboards, analytics, and a fully responsive user interface.<br>
-            The system enables users to track their personal expenses efficiently and gain clear visual insights through analytics and data visualization.<br>
-            The primary goal of the project is to demonstrate cloud-ready application development using modern deployment technologies.
-          </p>
-          <p>
-            <b>Technologies Used:</b><br>
-            Flask, Firebase, HTML, CSS, JavaScript, Python
-          </p>
-        `;
-      }
-
-      if (project === "p3") {
-        text = `
-          <h2>🌫️ Air Quality Monitoring System</h2>
-          <p>
-            An IoT-based environmental monitoring system designed to track pollution levels and real-time environmental data using sensor networks.<br>
-            The system utilizes multiple sensors such as MQ2 and MQ3 along with Arduino R3 for data collection and processing.<br>
-            Collected data is transmitted and displayed through a simple Android application, providing a user-friendly interface for real-time monitoring of environmental conditions.
-          </p>
-          <p>
-            <b>Technologies Used:</b><br>
-            Python, HTML, CSS, JavaScript, Android Studio, Java, Arduino
-          </p>
-        `;
-      }
-
-      if (project === "p4") {
-        text = `
-          <h2>🎨 AI Image Generator</h2>
-          <p>
-            An AI-powered application that generates visual content using prompt-based input systems.<br>
-            The system leverages AI APIs to transform user prompts into meaningful and relevant visual outputs, providing an intuitive and interactive user experience.
-          </p>
-          <p>
-            <b>Technologies Used:</b><br>
-            HTML, CSS, JavaScript, OpenAI API, Bootstrap
-          </p>
-        `;
-      }
-
-      document.getElementById("modal-text").innerHTML = text;
-      document.getElementById("modal").style.display = "block";
+  // Structural Framework Configuration Strategy Arrays
+  const data = {
+    p1: {
+      t: "📍 Spatio Temporal Crime Analysis",
+      d: "Analyzes systemic spatial data records trends patterns mapping variables over time metrics tracking systems. Built using the Chicago crime dataset, it applies data analytics and machine learning techniques to uncover meaningful crime patterns over time and across locations.",
+      tech: "Python, Data Analytics, Data Visualization, Machine Learning, Flask, SQL, REST APIs",
+      links: `<a class="action-btn btn-primary" href="https://github.com/purvaghadge/crime_prediction_app" target="_blank">Explore Repository</a>`
+    },
+    p2: {
+      t: "💰 Cloud Expense Tracker",
+      d: "A modern SaaS-based expense management platform featuring secure authentication, interactive dashboards, analytics, and a fully responsive user interface.",
+      tech: "Flask, Firebase, HTML, CSS, JavaScript, Python",
+      links: `<a class="action-btn btn-primary" href="https://expensetracker-bejz.onrender.com" target="_blank">Run Live Prototype</a>`
+    },
+    p3: {
+      t: "🌫️ Air Quality Monitoring System",
+      d: "An IoT-based environmental monitoring system designed to track pollution levels and real-time environmental data using sensor networks paired dynamically alongside custom Arduino micro-transmitters processing tracking frames layout metrics details.",
+      tech: "Python, HTML, CSS, JavaScript, Android Studio, Java, Arduino",
+      links: ""
+    },
+    p4: {
+      t: "🎨 AI Image Generator",
+      d: "An AI-powered application that generates visual content using prompt-based input systems linking third party API processing architecture structures parameters.",
+      tech: "HTML, CSS, JavaScript, OpenAI API, Bootstrap",
+      links: ""
     }
+  };
 
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
-    }
+  function openProjectModal(id) {
+    const item = data[id];
+    if (!item) return;
+    document.getElementById('modalTargetBody').innerHTML = `
+      <h2>${item.t}</h2>
+      <p>${item.d}</p>
+      <div class="modal-tech">
+        <strong style="color:var(--primary); font-family:var(--mono); font-size:12px; display:block; margin-bottom:6px;">ENGINEERING STACK:</strong>
+        <p style="font-size:13.5px; font-family:var(--sans); color:#fff;">${item.tech}</p>
+      </div>
+      <div style="margin-top:20px; display:flex; gap:10px;">${item.links}</div>
+    `;
+    document.getElementById('projectModal').classList.add('open');
+  }
 
-    window.onclick = function(event) {
-      let modal = document.getElementById("modal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+  function closeProjectModal(e) {
+    if(e.target === document.getElementById('projectModal')) {
+      document.getElementById('projectModal').classList.remove('open');
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
