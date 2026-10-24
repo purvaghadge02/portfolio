@@ -137,7 +137,6 @@
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } }
     .hero-hi { font-family: var(--mono); color: var(--primary); font-size: 16px; margin-bottom: 8px; }
     
-    /* Optimized to hold smooth space during typing */
     .hero-name { 
       font-family: var(--disp); 
       font-size: clamp(36px, 6vw, 56px); 
@@ -176,9 +175,20 @@
     .profile-pic:hover { transform: scale(1.04); }
 
     /* Grid Subsystems */
+    .grid-1 { display: grid; grid-template-columns: 1fr; gap: 20px; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     @media (max-width: 850px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+    /* Experience System */
+    .exp-card { position: relative; border-left: 3px solid var(--primary); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .exp-title { font-size: 18px; font-weight: 700; color: #fff; }
+    .exp-org { color: var(--primary); font-size: 14px; font-weight: 600; margin-top: 2px; }
+    .exp-date { font-family: var(--mono); font-size: 12px; color: var(--accent); background: rgba(0, 255, 178, 0.08); padding: 2px 8px; border-radius: 12px; }
+    .exp-list { list-style: none; margin-top: 10px; }
+    .exp-list li { font-size: 14px; color: var(--muted); margin-bottom: 8px; padding-left: 18px; position: relative; }
+    .exp-list li::before { content: '▹'; position: absolute; left: 0; color: var(--primary); }
 
     /* Flex Skill Badges */
     .skills-flex { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -254,6 +264,7 @@
     <div class="logo"><span>Purva Ghadge</span></div>
     <div class="nav-links">
       <a href="#about">About</a>
+      <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
@@ -268,6 +279,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
   <a href="#about">About</a>
+  <a href="#experience">Experience</a>
   <a href="#education">Education</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
@@ -304,7 +316,29 @@
     <div class="eyebrow">Overview</div>
     <h2>🧠 About Me</h2>
     <div class="glass">
-      Computer Science postgraduate passionate about AI, Data Analytics, Cloud Computing, and Full-Stack Development, with hands-on project experience. Eager to develop efficient software solutions while continuously learning emerging technologies.
+      Computer Science postgraduate passionate about AI, Data Analytics, Cloud Computing, and Full-Stack Development, with experience in data analytics, data cleaning, feature engineering, and analytical reporting. Proficient in SQL, Python, and database fundamentals. Eager to develop efficient software solutions while continuously learning emerging technologies.
+    </div>
+  </section>
+
+  <!-- Experience Section Added -->
+  <section id="experience">
+    <div class="eyebrow">Professional History</div>
+    <h2>💼 Experience</h2>
+    <div class="grid-1">
+      <div class="glass exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Data Analytics Intern</div>
+            <div class="exp-org">Excelerate 📊</div>
+          </div>
+          <div class="exp-date">Aug 2026 – Sep 2026</div>
+        </div>
+        <ul class="exp-list">
+          <li>Processed and validated 8,500+ student participation records using Excel, Python, and Pandas; resolved missing values, duplicate categories, and inconsistent date formats to improve data quality.</li>
+          <li>Engineered 10+ derived features and performed exploratory analysis to identify engagement patterns; presented cohort trends and heatmap visualizations for stakeholder review.</li>
+          <li>Built and evaluated a Random Forest classification model achieving 84% accuracy and 0.90 ROC-AUC; analyzed feature importance and generated category-level engagement probability forecasts.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -340,7 +374,7 @@
     <div class="glass skills-flex">
       <span>Python</span><span>Flask</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
       <span>SQL</span><span>Cloud ☁️</span><span>AI 🤖</span><span>Networking</span><span>Firebase</span>
-      <span>GitHub</span><span>Data Analysis</span><span>Application Support</span><span>IoT</span>
+      <span>GitHub</span><span>Data Analysis</span><span>Application Support</span><span>Pandas</span><span>LangChain</span>
     </div>
   </section>
 
@@ -355,20 +389,20 @@
       </div>
 
       <div class="glass proj-card" onclick="openProjectModal('p2')">
+        <div class="proj-title">🤖 AI-Powered Document Assistant <span>↗</span></div>
+        <p style="color:var(--muted); font-size:14px;">Conversational question-answering app using LangChain and FAISS for PDF document search.</p>
+        <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
+      </div>
+
+      <div class="glass proj-card" onclick="openProjectModal('p3')">
         <div class="proj-title">💰 Cloud Expense Tracker <span>↗</span></div>
         <p style="color:var(--muted); font-size:14px;">SaaS architecture platform featuring client multi-tenant authentication workflows.</p>
         <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
       </div>
 
-      <div class="glass proj-card" onclick="openProjectModal('p3')">
+      <div class="glass proj-card" onclick="openProjectModal('p4')">
         <div class="proj-title">🌫️ Air Quality Monitoring System <span>↗</span></div>
         <p style="color:var(--muted); font-size:14px;">IoT environmental telemetry array syncing air safety index values metrics.</p>
-        <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
-      </div>
-
-      <div class="glass proj-card" onclick="openProjectModal('p4')">
-        <div class="proj-title">🎨 AI Image Generator <span>↗</span></div>
-        <p style="color:var(--muted); font-size:14px;">AI generation layer executing programmatic prompt handling models interfaces.</p>
         <div class="proj-footer"><span style="font-family:var(--mono); font-size:11px; color:var(--accent);">View Stack & Case Details</span></div>
       </div>
     </div>
@@ -391,21 +425,21 @@
 
       <div class="glass cert-card">
         <div>
-          <div class="cert-title">NPTEL Certification</div>
-          <p class="cert-desc">Core Computer Science program alignment verification validation.</p>
+          <div class="cert-title">Deloitte Job Simulation</div>
+          <p class="cert-desc">Completed practical virtual job simulation modules and technical assessment tasks.</p>
         </div>
         <div class="cert-links">
-          <a class="action-btn btn-outline" style="padding: 6px 12px; font-size: 11px;" href="nptel.pdf" target="_blank">View Document</a>
+          <span style="font-family:var(--mono); font-size:11px; color:var(--accent);">Verified Simulation</span>
         </div>
       </div>
 
       <div class="glass cert-card">
         <div>
-          <div class="cert-title">Personality Development</div>
-          <p class="cert-desc">Professional corporate communication dynamic execution alignment focus strategies.</p>
+          <div class="cert-title">NPTEL Certification</div>
+          <p class="cert-desc">Core Computer Science program alignment verification validation.</p>
         </div>
         <div class="cert-links">
-          <a class="action-btn btn-outline" style="padding: 6px 12px; font-size: 11px;" href="personality.pdf" target="_blank">View Document</a>
+          <a class="action-btn btn-outline" style="padding: 6px 12px; font-size: 11px;" href="nptel.pdf" target="_blank">View Document</a>
         </div>
       </div>
     </div>
@@ -464,21 +498,21 @@
       links: `<a class="action-btn btn-primary" href="https://github.com/purvaghadge/crime_prediction_app" target="_blank">Explore Repository</a>`
     },
     p2: {
+      t: "🤖 AI-Powered Document Assistant",
+      d: "Developed a conversational question-answering application using LangChain and FAISS to retrieve contextually relevant information from PDF documents. Implemented semantic text chunking, vector embeddings, and LLM API integrations to support document similarity search and information retrieval.",
+      tech: "Python, LangChain, FAISS, Vector Embeddings, LLM APIs, Git, REST APIs",
+      links: `<a class="action-btn btn-primary" href="https://github.com/purvaghadge" target="_blank">Explore Repository</a>`
+    },
+    p3: {
       t: "💰 Cloud Expense Tracker",
       d: "A modern SaaS-based expense management platform featuring secure authentication, interactive dashboards, analytics, and a fully responsive user interface.",
       tech: "Flask, Firebase, HTML, CSS, JavaScript, Python",
       links: `<a class="action-btn btn-primary" href="https://expensetracker-bejz.onrender.com" target="_blank">Run Live Prototype</a>`
     },
-    p3: {
+    p4: {
       t: "🌫️ Air Quality Monitoring System",
       d: "An IoT-based environmental monitoring system designed to track pollution levels and real-time environmental data using sensor networks paired dynamically alongside custom Arduino micro-transmitters processing tracking frames layout metrics details.",
       tech: "Python, HTML, CSS, JavaScript, Android Studio, Java, Arduino",
-      links: ""
-    },
-    p4: {
-      t: "🎨 AI Image Generator",
-      d: "An AI-powered application that generates visual content using prompt-based input systems linking third party API processing architecture structures parameters.",
-      tech: "HTML, CSS, JavaScript, OpenAI API, Bootstrap",
       links: ""
     }
   };
@@ -542,49 +576,6 @@
   } else {
     setTimeout(startHeroAnimation, 300);
   }
-
-
-  // ---- particles ----
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let W,H,particles=[];
-function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
-resize(); window.addEventListener('resize', resize);
-const colors = ['#00D4FF','#6C63FF','#00FFB2'];
-const particleCount = window.innerWidth < 700 ? 28 : 70;
-for(let i=0;i<particleCount;i++){
-  particles.push({
-    x: Math.random()*W, y: Math.random()*H,
-    vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,
-    r: Math.random()*1.6+0.6, c: colors[i%3]
-  });
-}
-function drawParticles(){
-  ctx.clearRect(0,0,W,H);
-  particles.forEach(p=>{
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0||p.x>W) p.vx*=-1;
-    if(p.y<0||p.y>H) p.vy*=-1;
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=p.c; ctx.globalAlpha=0.5; ctx.fill();
-  });
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
-      const a=particles[i], b=particles[j];
-      const d = Math.hypot(a.x-b.x,a.y-b.y);
-      if(d<110){
-        ctx.beginPath();
-        ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-        ctx.strokeStyle='rgba(0,212,255,'+(0.12*(1-d/110))+')';
-        ctx.lineWidth=1; ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(drawParticles);
-}
-drawParticles();
-
 </script>
 
 </body>
